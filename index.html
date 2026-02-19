@@ -199,4 +199,82 @@
         <div class="rule">
           <div class="kv">
             <div class="k">Quando é share</div>
-            <div class="v">Relatórios costumam mostrar <cod
+            <div class="v">Relatórios costumam mostrar <code>Δ share (p.p.)</code> de um mês para o outro.</div>
+          </div>
+          <div class="kv">
+            <div class="k">Quando é venda</div>
+            <div class="v">Aparece como <code>%</code> de crescimento/queda: <code>(Mês atual / Mês anterior) - 1</code>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CANAIS -->
+      <section id="canais" class="card term-card" data-keys="canais canal cash carry atacarejo autosservico supermercado hiper farma e-commerce">
+        <h2 class="term">Canais</h2>
+        <div class="sub">O que são</div>
+        <p>
+          “Canal” é o tipo de varejo. Serve para separar comportamento de compra, sortimento, preço e dinâmica competitiva.
+          O nome exato pode variar por base/relatório, mas a lógica é sempre segmentar “onde” a venda acontece.
+        </p>
+
+        <div class="rule">
+          <div class="kv">
+            <div class="k">Cash &amp; Carry</div>
+            <div class="v">Atacarejo. Giro alto, preço agressivo, packs e volume relevantes.</div>
+          </div>
+          <div class="kv">
+            <div class="k">Autosserviço</div>
+            <div class="v">Super/hiper e formatos de autoatendimento. Sortimento amplo e disputa por exposição.</div>
+          </div>
+          <div class="kv">
+            <div class="k">Farma</div>
+            <div class="v">Farmácias/drogarias. Dinâmica de margem e mix diferente do alimentar.</div>
+          </div>
+          <div class="kv">
+            <div class="k">Outros</div>
+            <div class="v">Pode existir perfumaria, conveniência, e-commerce etc., dependendo da categoria e da base.</div>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px">
+          Sempre leia o cabeçalho do relatório: canal, período e base. Mudou o recorte, mudou a verdade do número.
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Glossário simples. Se quiser, eu adiciono mais termos (ex.: distribuição numérica/ponderada, MAT/LTM, preço médio, index, ruptura).
+    </div>
+  </footer>
+
+  <script>
+    // Busca simples: filtra cards pelo texto + data-keys
+    const q = document.getElementById('q');
+    const cards = Array.from(document.querySelectorAll('.term-card'));
+
+    function norm(s){
+      return (s || '').toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    }
+
+    function applyFilter(){
+      const term = norm(q.value.trim());
+      if (!term){
+        cards.forEach(c => c.classList.remove('hidden'));
+        return;
+      }
+      cards.forEach(c => {
+        const keys = norm(c.getAttribute('data-keys'));
+        const text = norm(c.innerText);
+        const hit = keys.includes(term) || text.includes(term);
+        c.classList.toggle('hidden', !hit);
+      });
+    }
+
+    q.addEventListener('input', applyFilter);
+  </script>
+</body>
+</html>
