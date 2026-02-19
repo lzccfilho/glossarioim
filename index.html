@@ -4,28 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Glossário — Inteligência de Mercado</title>
+  <meta name="description" content="Glossário simples de inteligência de mercado: Nielsen (NIQ), share, p.p., var. MoM e canais." />
   <style>
     :root{
       --bg:#0b0f14; --card:#111827; --muted:#9ca3af; --text:#e5e7eb;
-      --line:#243041; --accent:#22c55e; --warn:#f59e0b;
+      --line:#243041; --accent:#22c55e;
     }
     *{box-sizing:border-box}
     body{
       margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif;
-      background:linear-gradient(180deg,#070a0f 0%, #0b0f14 30%, #0b0f14 100%);
-      color:var(--text);
+      background:var(--bg); color:var(--text);
     }
     header{
-      padding:28px 18px 12px; border-bottom:1px solid var(--line);
-      position:sticky; top:0; background:rgba(11,15,20,.92); backdrop-filter:blur(8px);
-      z-index:10;
+      position:sticky; top:0; z-index:10;
+      background:rgba(11,15,20,.92); backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+      padding:18px 16px;
     }
     .wrap{max-width:980px; margin:0 auto}
-    h1{margin:0 0 8px; font-size:22px; letter-spacing:.2px}
-    p.lead{margin:0; color:var(--muted); font-size:14px; line-height:1.45}
-    .toolbar{
-      display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;
-    }
+    h1{margin:0 0 8px; font-size:20px; letter-spacing:.2px}
+    .lead{margin:0; color:var(--muted); font-size:13px; line-height:1.45}
+    .toolbar{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
     .search{
       flex:1; min-width:240px;
       display:flex; align-items:center; gap:10px;
@@ -34,65 +33,67 @@
     .search input{
       width:100%; border:0; outline:0; background:transparent; color:var(--text); font-size:14px;
     }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      background:rgba(34,197,94,.12); border:1px solid rgba(34,197,94,.25);
-      color:#b8f7c9; padding:8px 10px; border-radius:999px; font-size:12px;
-      cursor:pointer; user-select:none;
+    nav{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:10px;
     }
-    main{padding:18px}
+    nav a{
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+    }
+    nav a:hover{border-color:rgba(34,197,94,.35)}
+    main{padding:16px}
     .grid{
       display:grid; grid-template-columns:repeat(12,1fr); gap:12px;
     }
     .card{
       grid-column:span 12;
       background:var(--card); border:1px solid var(--line); border-radius:16px;
-      overflow:hidden;
+      padding:14px 16px;
     }
-    .card .hd{
-      padding:14px 16px; border-bottom:1px solid var(--line);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
-    }
-    .term{font-size:16px; font-weight:650; margin:0}
-    .tag{
-      font-size:11px; color:var(--muted);
-      border:1px solid var(--line); padding:6px 8px; border-radius:999px; white-space:nowrap;
-    }
-    .card .bd{padding:14px 16px}
-    .bd p{margin:0 0 10px; color:var(--text); line-height:1.55; font-size:14px}
-    .bd p.muted{color:var(--muted)}
-    .bd code{
-      background:#0b1220; border:1px solid #1f2b3d; padding:2px 6px; border-radius:8px;
-      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      font-size:12px;
-    }
-    details{border-top:1px dashed #263244; margin-top:12px; padding-top:10px}
-    summary{cursor:pointer; color:#cbd5e1; font-size:13px}
-    .mini{
-      display:grid; gap:8px; margin-top:10px
+    .term{margin:0 0 8px; font-size:16px; font-weight:700}
+    .sub{margin:0 0 10px; color:var(--muted); font-size:12px}
+    p{margin:0 0 10px; font-size:14px; line-height:1.55}
+    .rule{
+      border-top:1px solid var(--line);
+      margin-top:12px; padding-top:12px;
+      display:grid; gap:10px;
     }
     .kv{
       display:flex; gap:10px; align-items:flex-start;
       background:#0b1220; border:1px solid #1f2b3d; border-radius:12px; padding:10px 12px;
     }
-    .k{min-width:120px; color:#cbd5e1; font-size:12px}
+    .k{min-width:140px; color:#cbd5e1; font-size:12px}
     .v{color:var(--muted); font-size:12px; line-height:1.45}
-    .note{
-      margin-top:14px; padding:12px 14px; border-radius:14px;
-      border:1px solid rgba(245,158,11,.25); background:rgba(245,158,11,.10);
-      color:#ffe7c2; font-size:13px; line-height:1.5;
+    code{
+      background:#0b1220; border:1px solid #1f2b3d;
+      padding:2px 6px; border-radius:8px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      font-size:12px;
+      color:#dbeafe;
     }
-    .ok{
-      border:1px solid rgba(34,197,94,.22); background:rgba(34,197,94,.08);
+    .note{
+      border:1px solid rgba(34,197,94,.22);
+      background:rgba(34,197,94,.08);
       color:#d7ffe2;
+      padding:12px 14px; border-radius:14px;
+      font-size:13px; line-height:1.5;
+      margin-top:12px;
     }
     footer{
-      padding:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px;
+      border-top:1px solid var(--line);
+      padding:16px; color:var(--muted); font-size:12px;
     }
     @media (min-width:900px){
       .card.half{grid-column:span 6}
       .card.third{grid-column:span 4}
     }
+    .hidden{display:none !important;}
   </style>
 </head>
 
@@ -101,20 +102,26 @@
     <div class="wrap">
       <h1>Glossário — Inteligência de Mercado</h1>
       <p class="lead">
-        Explicações diretas, com fórmula e exemplo. Se você souber só isso, já lê 90% dos relatórios de mercado sem se perder.
+        Objetivo: ler relatório e entender o básico sem ruído. Tudo aqui é para uso prático em Nielsen/NIQ e afins.
       </p>
 
       <div class="toolbar">
-        <div class="search" title="Digite para filtrar termos (ex.: share, mom, canal)">
+        <div class="search" title="Filtra termos pelo texto (ex.: share, mom, canal)">
           <span style="color:var(--muted)">🔎</span>
-          <input id="q" type="search" placeholder="Buscar termo no glossário…" autocomplete="off" />
+          <input id="q" type="search" placeholder="Buscar termo…" autocomplete="off" />
         </div>
-        <div class="pill" id="expandAll">Expandir detalhes</div>
-        <div class="pill" id="collapseAll" style="background:rgba(156,163,175,.10);border-color:rgba(156,163,175,.25);color:#e5e7eb">Recolher detalhes</div>
       </div>
 
-      <div class="note ok" style="margin-top:12px">
-        Dica prática: <b>share</b> é porcentagem; <b>p.p.</b> é diferença de porcentagem (ponto percentual); <b>Var. MoM</b> é variação vs mês anterior.
+      <nav aria-label="Atalhos">
+        <a href="#nielsen">Nielsen (NIQ)</a>
+        <a href="#share">Share</a>
+        <a href="#pp">p.p.</a>
+        <a href="#mom">Var. MoM</a>
+        <a href="#canais">Canais</a>
+      </nav>
+
+      <div class="note">
+        Regra de ouro: <b>share</b> é porcentagem do mercado; <b>p.p.</b> é diferença entre percentuais; <b>MoM</b> é mês vs mês anterior.
       </div>
     </div>
   </header>
@@ -123,144 +130,73 @@
     <div class="grid" id="grid">
 
       <!-- NIELSEN -->
-      <section class="card half term-card" data-keys="nielsen nielseniq niq base painel auditoria varejo sell-out">
-        <div class="hd">
-          <div>
-            <h2 class="term">Nielsen (NielsenIQ / NIQ)</h2>
-            <div class="muted" style="margin-top:4px;font-size:12px;color:var(--muted)">Fonte de dados de mercado</div>
-          </div>
-          <div class="tag">conceito</div>
-        </div>
-        <div class="bd">
-          <p>
-            É uma <b>empresa de pesquisa de mercado</b> que consolida informações de vendas no varejo para medir
-            <b>tamanho de mercado</b>, <b>participação (share)</b> e <b>evolução ao longo do tempo</b>.
-          </p>
-          <p class="muted">
-            Em relatórios, você normalmente vê recortes por período, canal e ranking de marcas com métricas como
-            <code>Share</code>, <code>Var. MoM</code> e <code>Share (p.p.)</code>.
-          </p>
+      <section id="nielsen" class="card half term-card" data-keys="nielsen nielseniq niq base painel auditoria varejo sell-out">
+        <h2 class="term">Nielsen (NielsenIQ / NIQ)</h2>
+        <div class="sub">O que é</div>
+        <p>
+          Empresa de pesquisa que consolida dados de varejo para medir mercado, performance de marcas e evolução no tempo.
+          Em relatório, normalmente aparece como ranking de marcas por <code>unidades</code> e/ou <code>R$</code>,
+          por período e por canal.
+        </p>
 
-          <details>
-            <summary>Como isso aparece no relatório</summary>
-            <div class="mini">
-              <div class="kv">
-                <div class="k">Exemplo de bloco</div>
-                <div class="v">
-                  “Mercado de Inseticidas em Aerossol”, com <code>Share de unid.</code>,
-                  variação vs último mês em <code>p.p.</code> e recorte por canal.
-                  (Veja o painel com “Total Brasil”, “Cash &amp; Carry”, “Autosserviço” e “Farma”.)
-                </div>
-              </div>
-              <div class="kv">
-                <div class="k">Para que serve</div>
-                <div class="v">
-                  Responder perguntas objetivas: “Qual o share da minha marca?”, “Quem ganhou/perdeu share no mês?”,
-                  “Qual canal concentra minha performance?”.
-                </div>
-              </div>
-            </div>
-          </details>
+        <div class="rule">
+          <div class="kv">
+            <div class="k">O que responde</div>
+            <div class="v">“Qual meu tamanho no mercado?”, “Quem ganhou/perdeu share?”, “Em qual canal eu performo melhor?”</div>
+          </div>
+          <div class="kv">
+            <div class="k">Cuidado típico</div>
+            <div class="v">Dado depende do recorte: período, canal, região e definição da categoria.</div>
+          </div>
         </div>
       </section>
 
       <!-- SHARE -->
-      <section class="card half term-card" data-keys="share participacao market share share unid share valor porcentagem">
-        <div class="hd">
-          <div>
-            <h2 class="term">Share</h2>
-            <div class="muted" style="margin-top:4px;font-size:12px;color:var(--muted)">Participação no mercado</div>
-          </div>
-          <div class="tag">métrica</div>
-        </div>
-        <div class="bd">
-          <p>
-            <b>Share</b> é a fatia do mercado que uma marca tem dentro de um recorte definido
-            (categoria + período + canal + geografia).
-          </p>
+      <section id="share" class="card half term-card" data-keys="share participacao market share share unid share valor porcentagem">
+        <h2 class="term">Share</h2>
+        <div class="sub">Definição</div>
+        <p>
+          Participação de uma marca dentro do total do mercado (no recorte escolhido: categoria + período + canal + região).
+          Pode ser em <b>unidades</b> (volume) ou em <b>valor</b> (R$).
+        </p>
 
-          <details>
-            <summary>Fórmula e exemplo</summary>
-            <div class="mini">
-              <div class="kv">
-                <div class="k">Fórmula</div>
-                <div class="v">
-                  <code>Share (%) = (Vendas da marca / Vendas totais do mercado) × 100</code>
-                </div>
-              </div>
-              <div class="kv">
-                <div class="k">Em unidades</div>
-                <div class="v">
-                  <code>Share Unid.</code> usa volume (unidades). Ex.: 8,2% de share de unidades no Total Brasil.
-                </div>
-              </div>
-              <div class="kv">
-                <div class="k">Em valor</div>
-                <div class="v">
-                  Share em valor usa R$. Serve quando você quer capturar efeito de preço/mix.
-                </div>
-              </div>
-              <div class="kv">
-                <div class="k">Leitura correta</div>
-                <div class="v">
-                  Share não diz “crescimento absoluto”. Diz “quanto do mercado é meu”. Você pode crescer em vendas e ainda assim perder share se o mercado crescer mais.
-                </div>
-              </div>
-            </div>
-          </details>
+        <div class="rule">
+          <div class="kv">
+            <div class="k">Fórmula</div>
+            <div class="v"><code>Share (%) = (Vendas da marca / Vendas totais do mercado) × 100</code></div>
+          </div>
+          <div class="kv">
+            <div class="k">Leitura correta</div>
+            <div class="v">Você pode crescer em vendas e ainda assim perder share se o mercado crescer mais que você.</div>
+          </div>
         </div>
       </section>
 
-      <!-- P.P. -->
-      <section class="card third term-card" data-keys="p.p ponto percentual pp diferenca share variacao pp">
-        <div class="hd">
-          <div>
-            <h2 class="term">p.p. (ponto percentual)</h2>
-            <div class="muted" style="margin-top:4px;font-size:12px;color:var(--muted)">Diferença entre percentuais</div>
+      <!-- PP -->
+      <section id="pp" class="card third term-card" data-keys="p.p ponto percentual pp diferenca share variacao pp">
+        <h2 class="term">p.p. (ponto percentual)</h2>
+        <div class="sub">Definição</div>
+        <p>
+          Forma correta de expressar a diferença entre dois percentuais. É o padrão para variação de share.
+        </p>
+
+        <div class="rule">
+          <div class="kv">
+            <div class="k">Exemplo</div>
+            <div class="v">Share saiu de 6,9% para 8,2% ⟶ variação <code>+1,3 p.p.</code> (não “+1,3%”).</div>
           </div>
-          <div class="tag">métrica</div>
-        </div>
-        <div class="bd">
-          <p>
-            <b>p.p.</b> é usado quando você compara <b>dois percentuais</b>. É a forma certa de falar de variação de share.
-          </p>
-          <details>
-            <summary>Exemplo simples</summary>
-            <div class="mini">
-              <div class="kv">
-                <div class="k">Cálculo</div>
-                <div class="v">
-                  Se o share foi de 6,9% e passou para 8,2%, a variação é <code>+1,3 p.p.</code> (não “+1,3%”).
-                </div>
-              </div>
-              <div class="kv">
-                <div class="k">Por que importa</div>
-                <div class="v">
-                  “%” é relativo. “p.p.” é absoluto entre percentuais. Em relatórios, aparece como <code>Share (p.p.)</code>.
-                </div>
-              </div>
-            </div>
-          </details>
         </div>
       </section>
 
-      <!-- VAR MOM -->
-      <section class="card third term-card" data-keys="var mom mom month over month mes contra mes variacao mensal">
-        <div class="hd">
-          <div>
-            <h2 class="term">Var. MoM</h2>
-            <div class="muted" style="margin-top:4px;font-size:12px;color:var(--muted)">Variação mês vs mês anterior</div>
-          </div>
-          <div class="tag">métrica</div>
-        </div>
-        <div class="bd">
-          <p>
-            <b>MoM</b> significa <i>Month over Month</i>. É a comparação do mês atual contra o mês imediatamente anterior.
-          </p>
+      <!-- MOM -->
+      <section id="mom" class="card third term-card" data-keys="var mom mom month over month mes contra mes variacao mensal">
+        <h2 class="term">Var. MoM</h2>
+        <div class="sub">Definição</div>
+        <p>
+          <i>Month over Month</i>. Compara o mês atual contra o mês imediatamente anterior.
+        </p>
 
-          <details>
-            <summary>Como interpretar no contexto de share</summary>
-            <div class="mini">
-              <div class="kv">
-                <div class="k">Quando é share</div>
-               
+        <div class="rule">
+          <div class="kv">
+            <div class="k">Quando é share</div>
+            <div class="v">Relatórios costumam mostrar <cod
